@@ -1,0 +1,58 @@
+{
+  "name": "steam-desktop-auth",
+  "version": "1.0.0",
+  "description": "Steam Desktop Authenticator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "build:portable": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.steamguard.desktop",
+    "productName": "Steam Guard Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "src/assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "src/assets/icon.png",
+      "uninstallerIcon": "src/assets/icon.png"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": []
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0",
+    "steam-session": "^1.6.0",
+    "steam-totp": "^2.1.2",
+    "steamcommunity": "^3.50.3"
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1"
+  }
+}
